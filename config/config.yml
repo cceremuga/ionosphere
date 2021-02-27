@@ -1,0 +1,30 @@
+rtl:
+  path: "rtl_fm"
+  frequency: "144.390M"
+  gain: "49.6"
+  ppm-error: "0"
+  squelch-level: "0"
+  sample-rate: "22050"
+  additional-flags: ""
+
+multimon:
+  path: "multimon-ng"
+  additional-flags: ""
+
+beacon:
+  enabled: false
+  interval: 10.0
+  comment: "Powered by Ionosphere"
+  symbol-table: "I"
+  symbol: "&"
+
+handlers:
+- id: "4967ade5-7a97-416f-86bf-6e2ae8a5e581"
+  name: "stdout"
+- id: "b67ac5d5-3612-4618-88a9-a63d36a1777c"
+  name: "aprsis"
+  options:
+    enabled: false
+    server: "rotate.aprs.net"
+    call-sign: ""
+    passcode: ""
