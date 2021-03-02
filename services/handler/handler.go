@@ -6,7 +6,7 @@ import (
 	"github.com/cceremuga/ionosphere/handlers/stdout"
 	"github.com/cceremuga/ionosphere/interfaces"
 	"github.com/cceremuga/ionosphere/services/config"
-	log "github.com/sirupsen/logrus"
+	"github.com/cceremuga/ionosphere/services/log"
 )
 
 var cache []interfaces.Handler

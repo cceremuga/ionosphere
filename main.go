@@ -5,15 +5,14 @@ package main
 
 import (
 	"io"
-	"os"
 
 	"github.com/cceremuga/ionosphere/services/config"
 	"github.com/cceremuga/ionosphere/services/handler"
+	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/cceremuga/ionosphere/services/packet"
 	"github.com/cceremuga/ionosphere/subprocesses/multimon"
 	"github.com/cceremuga/ionosphere/subprocesses/rtlsdr"
 	"github.com/gookit/color"
-	log "github.com/sirupsen/logrus"
 )
 
 const logo = `
@@ -23,10 +22,6 @@ const logo = `
 /___/\___/_//_/\___/___/ .__/_//_/\__/_/  \__/
                       /_/
 `
-
-func init() {
-	log.SetOutput(os.Stdout)
-}
 
 func main() {
 	color.LightBlue.Println(logo)
@@ -39,10 +34,10 @@ func main() {
 	rtl.Stdout = w
 	mult.Stdin = r
 
-	// Start each subprocess, then all handlers in bulk.
+	// Start handlers, then subprocesses.
+	handler.Start()
 	rtlsdr.Start(rtl)
 	multimon.Start(mult, packet.Decode)
-	handler.Start()
 
 	log.Println("Listening for packets.")
 

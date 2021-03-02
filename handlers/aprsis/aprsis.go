@@ -4,9 +4,10 @@ package aprsis
 import (
 	"strconv"
 
+	"github.com/cceremuga/ionosphere/services/aprsis"
 	"github.com/cceremuga/ionosphere/services/config"
+	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/pd0mz/go-aprs"
-	log "github.com/sirupsen/logrus"
 )
 
 // APRSIS helps fulfill the Handler interface contract.
@@ -44,13 +45,16 @@ func (s APRSIS) Enabled() bool {
 
 // Start initializes a connection to APRS-IS.
 func (s APRSIS) Start() {
-	log.Println("TODO: Connect to APRS-IS.")
+	aprsis.Connect(opts)
+	log.Println("Connected to APRS-IS.")
 }
 
 // Handle uploads packets to APRS-IS if configured.
 func (s APRSIS) Handle(p *aprs.Packet) {
-	// TODO: upload to APRS-IS here.
+	aprsis.Upload(p)
 }
 
-// Stop does nothing in this implementation.
-func (s APRSIS) Stop() {}
+// Stop disconnects from APRS-IS.
+func (s APRSIS) Stop() {
+	aprsis.Disconnect()
+}

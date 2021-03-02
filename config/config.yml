@@ -13,8 +13,10 @@ multimon:
 
 beacon:
   enabled: false
+  latitude: ""
+  longitude: ""
   interval: 10.0
-  comment: "Powered by Ionosphere"
+  comment: "Powered by http://ionosphere.xyz"
   symbol-table: "I"
   symbol: "&"
 
@@ -25,6 +27,7 @@ handlers:
   name: "aprsis"
   options:
     enabled: false
-    server: "rotate.aprs.net"
+    server: "noam.aprs2.net:14580"
     call-sign: ""
     passcode: ""
+    filter: ""

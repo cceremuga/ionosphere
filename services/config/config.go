@@ -4,7 +4,7 @@ package config
 import (
 	"io/ioutil"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/cceremuga/ionosphere/services/log"
 	"gopkg.in/yaml.v2"
 )
 

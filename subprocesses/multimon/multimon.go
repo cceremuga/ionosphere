@@ -7,7 +7,7 @@ import (
 	"os/exec"
 
 	"github.com/cceremuga/ionosphere/services/config"
-	log "github.com/sirupsen/logrus"
+	"github.com/cceremuga/ionosphere/services/log"
 )
 
 // Build builds the Command for multimon-ng based upon config and flags.

@@ -10,7 +10,7 @@ It is **very much under active development** and is not a feature-matched replac
 
 ## What it does so far
 
-* Receive, decode, log APRS packets to terminal.
+* Receive, decode, log APRS packets to terminal, warnings and errors to file.
 * Allow for full configuration RTL-SDR, multimon-ng options via simple YAML.
 
 ## Requirements
@@ -33,10 +33,9 @@ We use a Raspberry Pi. They're simple to use, compatible, and frankly, just pret
 
 ## Roadmap
 
-* Upload received packets to APRS-IS.
-* Upload interval beacons to APRS-IS.
+* Upload packets to APRS-IS.
+* Upload timed beacons to APRS-IS (lets you show up on aprs.fi).
 * Unit tests. Shameful there are none yet! :sadpanda:
-* Log packets to physical log files.
 * Plugin framework.
 
 ## Security and Privacy

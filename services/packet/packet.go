@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/cceremuga/ionosphere/services/handler"
+	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/pd0mz/go-aprs"
-	log "github.com/sirupsen/logrus"
 )
 
 // Decode packets in the IO stream output from multimon-ng.

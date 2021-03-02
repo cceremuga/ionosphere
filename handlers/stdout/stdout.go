@@ -2,8 +2,8 @@
 package stdout
 
 import (
+	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/pd0mz/go-aprs"
-	log "github.com/sirupsen/logrus"
 )
 
 // Stdout helps fulfill the Handler interface contract.
