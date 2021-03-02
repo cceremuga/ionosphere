@@ -1,4 +1,4 @@
-<img src="./logo.png" alt="Ionosphere Logo" style="width:350px;height: auto;">
+<img src="./logo.png" alt="Ionosphere Logo" width="350">
 
 [![Build Status](https://travis-ci.org/cceremuga/ionosphere.svg?branch=master)](https://travis-ci.org/cceremuga/ionosphere) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
 
