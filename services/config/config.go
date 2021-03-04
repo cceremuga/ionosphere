@@ -28,7 +28,7 @@ type Multimon struct {
 
 // Handler represents an individual handler's config.
 type Handler struct {
-	Id      string
+	ID      string
 	Name    string
 	Options map[string]string
 }
@@ -78,7 +78,7 @@ func HandlerOptions(id string) map[string]string {
 	for i := 0; i < len(handlers); i++ {
 		handler := handlers[i]
 
-		if handler.Id == id {
+		if handler.ID == id {
 			return handler.Options
 		}
 	}

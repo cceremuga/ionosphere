@@ -5,8 +5,8 @@ import "github.com/pd0mz/go-aprs"
 
 // Handler represents an interface for handling Packets.
 type Handler interface {
-	// Id specifies a unique id (GUID) for this handler.
-	Id() string
+	// ID specifies a unique id (GUID) for this handler.
+	ID() string
 
 	// Name defines the english name of a given handler for messages.
 	Name() string

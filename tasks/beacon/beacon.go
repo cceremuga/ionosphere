@@ -51,15 +51,15 @@ func tickerInterval(c *config.Beacon) {
 
 func validate(c *config.Beacon) error {
 	if c.Interval < (time.Duration(10) * time.Minute) {
-		return errors.New("Beacon may not be set to less than a 10 minute interval.")
+		return errors.New("interval cannot be < 10m")
 	}
 
 	if c.Latitude == 0 {
-		return errors.New("Beacon latitude not configured.")
+		return errors.New("latitude not configured")
 	}
 
 	if c.Longitude == 0 {
-		return errors.New("Beacon longitude not configured.")
+		return errors.New("longitude not configured")
 	}
 
 	return nil

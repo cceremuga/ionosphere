@@ -23,7 +23,7 @@ func init() {
 }
 
 // Id defines the Id for this handler.
-func (s APRSIS) Id() string {
+func (s APRSIS) ID() string {
 	return id
 }
 

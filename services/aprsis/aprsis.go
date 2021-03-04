@@ -87,15 +87,15 @@ func Upload(p *aprs.Packet) {
 
 func validate(options map[string]string) (string, string, string, error) {
 	if options["server"] == "" {
-		return "", "", "", errors.New("No server address specified.")
+		return "", "", "", errors.New("no server address specified")
 	}
 
 	if options["call-sign"] == "" {
-		return "", "", "", errors.New("No callsign specified.")
+		return "", "", "", errors.New("no callsign specified")
 	}
 
 	if options["passcode"] == "" {
-		return "", "", "", errors.New("No passcode specified.")
+		return "", "", "", errors.New("no passcode specified")
 	}
 
 	return options["server"], options["call-sign"], options["passcode"], nil
