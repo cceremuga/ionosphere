@@ -12,6 +12,7 @@ import (
 	"github.com/cceremuga/ionosphere/services/packet"
 	"github.com/cceremuga/ionosphere/subprocesses/multimon"
 	"github.com/cceremuga/ionosphere/subprocesses/rtlsdr"
+	"github.com/cceremuga/ionosphere/tasks/beacon"
 	"github.com/gookit/color"
 )
 
@@ -38,6 +39,7 @@ func main() {
 	handler.Start()
 	rtlsdr.Start(rtl)
 	multimon.Start(mult, packet.Decode)
+	beacon.Start(&c.Beacon)
 
 	log.Println("Listening for packets.")
 

@@ -3,6 +3,7 @@ package config
 
 import (
 	"io/ioutil"
+	"time"
 
 	"github.com/cceremuga/ionosphere/services/log"
 	"gopkg.in/yaml.v2"
@@ -35,7 +36,9 @@ type Handler struct {
 // Beacon represents the periodic beacon packet config.
 type Beacon struct {
 	Enabled     bool
-	Interval    float32
+	Latitude    float32
+	Longitude   float32
+	Interval    time.Duration
 	Comment     string
 	SymbolTable string `yaml:"symbol-table"`
 	Symbol      string

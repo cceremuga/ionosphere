@@ -69,6 +69,11 @@ func Disconnect() {
 
 // Upload sends a packet to APRS-IS.
 func Upload(p *aprs.Packet) {
+	if !connected && opts == nil {
+		log.Warn("APRS-IS is not connected and not configured. Verify config.")
+		return
+	}
+
 	if !connected {
 		Connect(opts)
 	}
