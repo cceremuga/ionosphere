@@ -12,7 +12,7 @@ type Stdout struct{}
 const id = "4967ade5-7a97-416f-86bf-6e2ae8a5e581"
 const name = "Stdout"
 
-// Id defines the Id of this handler.
+// ID defines the Id of this handler.
 func (s Stdout) ID() string {
 	return id
 }

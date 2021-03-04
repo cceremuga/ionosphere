@@ -22,7 +22,7 @@ func init() {
 	opts = config.HandlerOptions(id)
 }
 
-// Id defines the Id for this handler.
+// ID defines the Id for this handler.
 func (s APRSIS) ID() string {
 	return id
 }
