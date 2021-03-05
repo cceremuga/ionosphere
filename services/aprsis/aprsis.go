@@ -36,7 +36,7 @@ func Connect(options map[string]string) {
 	}
 
 	// Auth
-	err = c.PrintfLine("user %s pass %s vers Ionosphere 0.1 filter %s",
+	err = c.PrintfLine("user %s pass %s vers Ionosphere 1.0.0-beta filter %s",
 		callsign, passcode, opts["filter"])
 	if err != nil {
 		log.Fatal(err)
