@@ -1,5 +1,5 @@
 name = ionosphere
-version = 0.0.1
+version = 1.0.0-beta
 config = config/config.yml
 
 define build_arch
