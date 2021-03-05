@@ -36,7 +36,7 @@ func Connect(options map[string]string) {
 	}
 
 	// Auth
-	err = c.PrintfLine("user %s pass %s vers Ionosphere 0.1%s",
+	err = c.PrintfLine("user %s pass %s vers Ionosphere 0.1 filter %s",
 		callsign, passcode, opts["filter"])
 	if err != nil {
 		log.Fatal(err)
@@ -69,6 +69,11 @@ func Disconnect() {
 
 // Upload sends a packet to APRS-IS.
 func Upload(p *aprs.Packet) {
+	UploadRaw(p.Raw)
+}
+
+// UploadRaw sends a raw packet to APRS-IS.
+func UploadRaw(s string) {
 	if !connected && opts == nil {
 		log.Warn("APRS-IS is not connected and not configured. Verify config.")
 		return
@@ -78,7 +83,7 @@ func Upload(p *aprs.Packet) {
 		Connect(opts)
 	}
 
-	err := conn.PrintfLine(p.Raw)
+	err := conn.PrintfLine(s)
 
 	if err != nil {
 		log.Error(err)

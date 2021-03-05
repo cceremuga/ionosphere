@@ -5,6 +5,7 @@ config = config/config.yml
 define build_arch
 	$(1) go build -o bin/$(2)/ionosphere main.go
 	mkdir bin/$(2)/config
+	mkdir bin/$(2)/logs
 	cp $(config) bin/$(2)/$(config)
 	cp README.md bin/$(2)/README.md
 	cp LICENSE bin/$(2)/LICENSE.md

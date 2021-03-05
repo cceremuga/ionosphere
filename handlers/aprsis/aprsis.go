@@ -40,6 +40,10 @@ func (s APRSIS) Enabled() bool {
 		return false
 	}
 
+	if !enabled {
+		log.Println("APRS-IS handler inactive.")
+	}
+
 	return enabled
 }
 

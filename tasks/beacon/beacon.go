@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/cceremuga/ionosphere/framework/beacon"
+	"github.com/cceremuga/ionosphere/services/aprsis"
 	"github.com/cceremuga/ionosphere/services/config"
 	"github.com/cceremuga/ionosphere/services/log"
 )
@@ -46,20 +48,21 @@ func startTicker(c *config.Beacon) {
 }
 
 func tickerInterval(c *config.Beacon) {
-	log.Println("TODO: Actually upload beacon to APRS-IS.")
+	log.Println("Uploading beacon.")
+	b := beacon.Beacon{
+		Src:     c.Call,
+		Comment: c.Comment,
+	}
+	aprsis.UploadRaw(b.String())
 }
 
 func validate(c *config.Beacon) error {
-	if c.Interval < (time.Duration(10) * time.Minute) {
+	if c.Interval < (time.Duration(30) * time.Minute) {
 		return errors.New("interval cannot be < 10m")
 	}
 
-	if c.Latitude == 0 {
-		return errors.New("latitude not configured")
-	}
-
-	if c.Longitude == 0 {
-		return errors.New("longitude not configured")
+	if c.Call == "" {
+		return errors.New("beacon call-sign not configured")
 	}
 
 	return nil

@@ -35,13 +35,10 @@ type Handler struct {
 
 // Beacon represents the periodic beacon packet config.
 type Beacon struct {
-	Enabled     bool
-	Latitude    float32
-	Longitude   float32
-	Interval    time.Duration
-	Comment     string
-	SymbolTable string `yaml:"symbol-table"`
-	Symbol      string
+	Enabled  bool
+	Call     string `yaml:"call-sign"`
+	Interval time.Duration
+	Comment  string
 }
 
 // Config represents the full, unmarshalled YAML config.

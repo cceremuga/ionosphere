@@ -1,16 +1,17 @@
 <img src="./logo.png" alt="Ionosphere Logo" width="350">
 
-[![Build Status](https://travis-ci.org/cceremuga/ionosphere.svg?branch=master)](https://travis-ci.org/cceremuga/ionosphere) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/12d209f6a0af41e594cdc4e881fd4d99)](https://www.codacy.com/gh/cceremuga/ionosphere/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cceremuga/ionosphere&amp;utm_campaign=Badge_Grade) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere) 
+[![Build Status](https://travis-ci.org/cceremuga/ionosphere.svg?branch=master)](https://travis-ci.org/cceremuga/ionosphere) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/12d209f6a0af41e594cdc4e881fd4d99)](https://www.codacy.com/gh/cceremuga/ionosphere/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cceremuga/ionosphere&amp;utm_campaign=Badge_Grade) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
 
 Receive, decode, log, upload [APRS](http://www.aprs.org/) packets using low cost [RTL-SDR](http://osmocom.org/projects/sdr/wiki/rtl-sdr) devices.
 
 This project is the next-generation successor to [PyPacket](https://gihub.com/cceremuga/pypacket).
 
-It is **very much under active development** and is not a feature-matched replacement yet.
+It is **very much under active development** and should be considered in a "beta" state at best. Please submit bug reports as you encounter them.
 
-## What it does so far
+## What it does
 
 * Receive, decode, log APRS packets to terminal, warnings and errors to file.
+* Upload APRS packets, periodic beacons to APRS-IS.
 * Allow for full configuration RTL-SDR, multimon-ng options via simple YAML.
 
 ## Requirements
@@ -33,8 +34,6 @@ We use a Raspberry Pi. They're simple to use, compatible, and frankly, just pret
 
 ## Roadmap
 
-* Upload packets to APRS-IS.
-* Upload timed beacons to APRS-IS (lets you show up on aprs.fi).
 * Unit tests. Shameful there are none yet! :sadpanda:
 * Plugin framework.
 
