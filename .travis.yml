@@ -1,5 +1,9 @@
 language: go
+go:
+  - "1.16.x"
+env:
+  - GO116MODULE=on
 script:
-  - go get
+  - go get -t -v ./...
   - make test && make coverage
   - make compile
