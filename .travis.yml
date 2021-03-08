@@ -1,5 +1,5 @@
 language: go
 script:
   - go get
-  - make test
+  - make test && make coverage
   - make compile

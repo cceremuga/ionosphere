@@ -2,6 +2,11 @@ name = ionosphere
 version = 1.0.0-beta
 config = config/config.yml
 
+ifndef $(GOPATH)
+    GOPATH=$(shell go env GOPATH)
+    export GOPATH
+endif
+
 define build_arch
 	$(1) go build -o bin/$(2)/ionosphere main.go
 	mkdir bin/$(2)/config
@@ -21,6 +26,9 @@ endef
 
 test:
 	go test ./... -v -covermode=count -coverprofile=coverage.out
+
+coverage:
+	$(GOPATH)/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $(COVERALLS_TOKEN)
 
 build:
 	GOOS=linux GOARCH=amd64 go build -o bin/$(linuxamd64)/ionosphere main.go

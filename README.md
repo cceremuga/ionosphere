@@ -1,6 +1,6 @@
 <img src="./logo.png" alt="Ionosphere Logo" width="350">
 
-[![Build Status](https://travis-ci.org/cceremuga/ionosphere.svg?branch=master)](https://travis-ci.org/cceremuga/ionosphere) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/12d209f6a0af41e594cdc4e881fd4d99)](https://www.codacy.com/gh/cceremuga/ionosphere/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cceremuga/ionosphere&amp;utm_campaign=Badge_Grade) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
+[![Build Status](https://travis-ci.org/cceremuga/ionosphere.svg?branch=master)](https://travis-ci.org/cceremuga/ionosphere) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/12d209f6a0af41e594cdc4e881fd4d99)](https://www.codacy.com/gh/cceremuga/ionosphere/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cceremuga/ionosphere&amp;utm_campaign=Badge_Grade) [![Coverage Status](https://coveralls.io/repos/github/cceremuga/ionosphere/badge.svg?branch=master)](https://coveralls.io/github/cceremuga/ionosphere?branch=master) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
 
 Receive, decode, log, upload [APRS](http://www.aprs.org/) packets using low cost [RTL-SDR](http://osmocom.org/projects/sdr/wiki/rtl-sdr) devices.
 
