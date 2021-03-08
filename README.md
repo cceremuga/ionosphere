@@ -8,11 +8,12 @@ This project is the next-generation successor to [PyPacket](https://gihub.com/cc
 
 It is **very much under active development** and should be considered in a "beta" state at best. Please submit bug reports as you encounter them.
 
-## What it does
+## Release Notes
 
-* Receive, decode, log APRS packets to terminal, warnings and errors to file.
-* Upload APRS packets, periodic beacons to APRS-IS.
-* Allow for full configuration RTL-SDR, multimon-ng options via simple YAML.
+* 3/9/2021 (1.0.0-beta1)
+    * Receives, decodes, logs APRS packets to terminal, warnings and errors to file.
+    * Uploads APRS packets, periodic beacons to APRS-IS.
+    * Allows for full configuration RTL-SDR, multimon-ng options via simple YAML.
 
 ## Requirements
 

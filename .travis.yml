@@ -1,6 +1,6 @@
 language: go
 go:
-  - "1.16.x"
+  - 1.16.x
 before_install:
   - go get golang.org/x/tools/cmd/cover
   - go get github.com/mattn/goveralls
@@ -8,3 +8,18 @@ script:
   - go get -v
   - make test && make coverage
   - make compile
+deploy:
+  provider: releases
+  api_key:
+    secure: eG8y5EMA0jOpPw0J3rcl+rvDqcBcKQSK9voAOaZA5afRlYIqKsyrWX0RKB104WwkpGDYDzfIAgpVSh4V69LLf5pWGJ1UT4G+tr7giZVBvzczAiw3P2n34j4u22P/ItqHatdfvtC9OknMsqdaH7DOL7dWCbZayA6wM4terN6YL7UMxE2qSLEZv7Vxo974qq/cYTRUQdOgU+mLk+Ds7Rj7OsbcEOMVgKvFrMPY2ksrARBApc6D3dMUIFK7fBVWiCyvbk4clDCt0qgz9r8P9qcyoJGlHeNNNw2xBkZ5D2yD058bCVDc6wDQJ4G7rPo3uvQEJ+7VuQ3ZJW0+GAsbKROVKOFp8MmwNXWUWeZoYYP3MAy8Fq03u1D7gVBbz/6+ZHZ1LuGALYWX2d6oXx4osNMJRzUcXUBUoDy0L2UArH/0k6HYYy5RrS0YyQlPHhNVBmWTgbo5FvDFmFe0IRcHtQBLV13cgUDdKaxjGAVnuSqOB7Ds2OidKbWl8n6JypwU78GgH2bBIBR0M54ddiW44JyLXOCCnH9GUblM8DPlfXAySBzzEy6GAj3WpoY7XUQTooyS5iE2UFAXeKRSNouiB9pVr88U9ogpiovQ6uoXixEoyzrPnt/DdPGMU0tgVop3JacVgNcel3TUwiFK06gkiaNkNh7N9CWy2oy0pbx3IsFh+Yw=
+  file:
+    - bin/ionosphere-freebsd-amd64.tar.gz
+    - bin/ionosphere-linux-amd64.tar.gz
+    - bin/ionosphere-macos-amd64.tar.gz
+    - bin/ionosphere-macos-arm64.tar.gz
+    - bin/ionosphere-raspberry-pi.tar.gz
+    - bin/ionosphere-windows-amd64.zip
+  skip_cleanup: true
+  draft: true
+  on:
+    tags: true

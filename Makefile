@@ -1,5 +1,4 @@
 name = ionosphere
-version = 1.0.0-beta
 config = config/config.yml
 
 ifndef $(GOPATH)
@@ -39,12 +38,12 @@ run:
 clean:
 	rm -rf ./bin
 
-macosarm64 = $(name)-$(version)-macos-arm64
-macosamd64 = $(name)-$(version)-macos-amd64
-linuxamd64 = $(name)-$(version)-linux-amd64
-freebsdamd64 = $(name)-$(version)-freebsd-amd64
-raspberrypi = $(name)-$(version)-raspberry-pi
-windowsamd64 = $(name)-$(version)-windows-amd64
+macosarm64 = $(name)-macos-arm64
+macosamd64 = $(name)-macos-amd64
+linuxamd64 = $(name)-linux-amd64
+freebsdamd64 = $(name)-freebsd-amd64
+raspberrypi = $(name)-raspberry-pi
+windowsamd64 = $(name)-windows-amd64
 
 .ONESHELL:
 
