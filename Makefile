@@ -19,6 +19,9 @@ define zip_distro
 	zip -r $(1).zip $(1)/
 endef
 
+test:
+	go test ./... -v -covermode=count -coverprofile=coverage.out
+
 build:
 	GOOS=linux GOARCH=amd64 go build -o bin/$(linuxamd64)/ionosphere main.go
 

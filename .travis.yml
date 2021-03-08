@@ -1,4 +1,5 @@
 language: go
 script:
   - go get
+  - make test
   - make compile

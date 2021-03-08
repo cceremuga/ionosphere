@@ -17,3 +17,4 @@
 bin/
 logs/
 config/config.yml.custom
+coverage.out
