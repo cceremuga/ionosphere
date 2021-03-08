@@ -4,6 +4,6 @@ go:
 env:
   - GO116MODULE=on
 script:
-  - go get -t -v ./...
+  - go get -v
   - make test && make coverage
   - make compile
