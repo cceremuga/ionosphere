@@ -29,7 +29,7 @@ We use a Raspberry Pi. They're simple to use, compatible, and frankly, just pret
 
 * Make sure all software in the Requirements section is installed.
 * Ensure your RTL-SDR device is connected.
-* Download and extract the latest release matching your system.
+* Download and extract the latest [binary release](https://github.com/cceremuga/ionosphere/releases/) for your OS.
 * Edit `config/config.yml` to match your needs.
 * In a terminal, from the directory containing Ionosphere, run `./ionosphere`.
 
