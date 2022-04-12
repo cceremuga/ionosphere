@@ -10,6 +10,9 @@ It is **very much under active development** and should be considered in a "beta
 
 ## Release Notes
 
+* 4/??/2022 ([1.0.0-beta2 release]()
+    * Fix beacon time interval to match requirement
+    *
 * 3/9/2021 ([1.0.0-beta1 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.0-beta1))
     * Receives, decodes, logs APRS packets to terminal, warnings and errors to file.
     * Uploads APRS packets, periodic beacons to APRS-IS.
