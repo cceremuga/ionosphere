@@ -1,12 +1,9 @@
 language: go
 go:
-  - 1.16.x
-before_install:
-  - go get golang.org/x/tools/cmd/cover
-  - go get github.com/mattn/goveralls
+  - 1.18.x
 script:
   - go get -v
-  - make test && make coverage
+  - make test
   - make compile
 deploy:
   provider: releases

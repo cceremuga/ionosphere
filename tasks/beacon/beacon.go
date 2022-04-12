@@ -57,7 +57,7 @@ func tickerInterval(c *config.Beacon) {
 }
 
 func validate(c *config.Beacon) error {
-	if c.Interval < (time.Duration(30) * time.Minute) {
+	if c.Interval < (time.Duration(10) * time.Minute) {
 		return errors.New("interval cannot be < 10m")
 	}
 

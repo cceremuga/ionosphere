@@ -1,6 +1,6 @@
 <img src="./logo.png" alt="Ionosphere Logo" width="350">
 
-[![Build Status](https://travis-ci.com/cceremuga/ionosphere.svg?branch=master)](https://travis-ci.com/cceremuga/ionosphere) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/12d209f6a0af41e594cdc4e881fd4d99)](https://www.codacy.com/gh/cceremuga/ionosphere/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cceremuga/ionosphere&amp;utm_campaign=Badge_Grade) [![Coverage Status](https://coveralls.io/repos/github/cceremuga/ionosphere/badge.svg?branch=master)](https://coveralls.io/github/cceremuga/ionosphere?branch=master) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
+[![Build Status](https://app.travis-ci.com/cceremuga/ionosphere.svg?branch=master)](https://app.travis-ci.com/cceremuga/ionosphere) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/12d209f6a0af41e594cdc4e881fd4d99)](https://www.codacy.com/gh/cceremuga/ionosphere/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cceremuga/ionosphere&amp;utm_campaign=Badge_Grade) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
 
 Receive, decode, log, upload [APRS](http://www.aprs.org/) packets using low cost [RTL-SDR](http://osmocom.org/projects/sdr/wiki/rtl-sdr) devices.
 
@@ -11,8 +11,10 @@ It is **very much under active development** and should be considered in a "beta
 ## Release Notes
 
 * 4/??/2022 ([1.0.0-beta2 release]()
-    * Fix beacon time interval to match requirement
     *
+* 4/12/2021
+    * Fixed beacon interval.
+    * Updated dependencies, removed some.
 * 3/9/2021 ([1.0.0-beta1 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.0-beta1))
     * Receives, decodes, logs APRS packets to terminal, warnings and errors to file.
     * Uploads APRS packets, periodic beacons to APRS-IS.
