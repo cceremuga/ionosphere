@@ -1,14 +1,17 @@
 module github.com/cceremuga/ionosphere
 
-go 1.16
+go 1.18
 
 require (
-	github.com/dougm/goflymake v0.0.0-20140731161037-3b9634ef394a // indirect
-	github.com/gookit/color v1.3.7
-	github.com/mattn/goveralls v0.0.8
+	github.com/gookit/color v1.5.0
 	github.com/pd0mz/go-aprs v0.0.0-20190904192146-34d6aa54791a
-	github.com/pd0mz/go-maidenhead v1.0.0 // indirect
-	github.com/sirupsen/logrus v1.8.0
-	golang.org/x/tools v0.1.0
+	github.com/sirupsen/logrus v1.8.1
 	gopkg.in/yaml.v2 v2.4.0
+)
+
+require (
+	github.com/magefile/mage v1.13.0 // indirect
+	github.com/pd0mz/go-maidenhead v1.0.0 // indirect
+	github.com/xo/terminfo v0.0.0-20210125001918-ca9a967f8778 // indirect
+	golang.org/x/sys v0.0.0-20220412071739-889880a91fd5 // indirect
 )

@@ -24,10 +24,7 @@ define zip_distro
 endef
 
 test:
-	go test ./... -v -covermode=count -coverprofile=coverage.out
-
-coverage:
-	$(GOPATH)/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $(COVERALLS_TOKEN)
+	go test ./... -v
 
 build:
 	GOOS=linux GOARCH=amd64 go build -o bin/$(linuxamd64)/ionosphere main.go
@@ -48,6 +45,7 @@ windowsamd64 = $(name)-windows-amd64
 .ONESHELL:
 
 compile:
+	rm -rf ./bin
 	$(call build_arch,GOOS=darwin GOARCH=amd64,$(macosamd64))
 	$(call build_arch,GOOS=darwin GOARCH=arm64,$(macosarm64))
 	$(call build_arch,GOOS=linux GOARCH=amd64,$(linuxamd64))
