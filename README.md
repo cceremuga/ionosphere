@@ -8,12 +8,11 @@ This project is the next-generation successor to [PyPacket](https://gihub.com/cc
 
 ## Release Notes
 
-* 10/29/2022 ([1.0.0-beta2 release]()
+* 10/30/2022 🎃 ([1.0.0-beta2 release]()
     * Updated Golang version to latest.
     * Added additional connection debugging for APRS-IS.
-    * Additional info logging added for beacons.
+    * Fixed several APRS-IS protocol bugs.
     * Documentation updates.
-    * MacOS arm64 binaries added.
 * 4/12/2021
     * Fixed beacon interval.
     * Updated dependencies, removed some.

@@ -3,9 +3,9 @@ package aprsis
 
 import (
 	"errors"
+	"fmt"
 	"net/textproto"
 	"strings"
-	"fmt"
 
 	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/pd0mz/go-aprs"
@@ -38,28 +38,54 @@ func Connect(options map[string]string) {
 		log.Info(fmt.Sprintf("Connected to APRS-IS: %s", server))
 	}
 
-	// Auth
+	// Send auth
 	err = c.PrintfLine("user %s pass %s vers Ionosphere 1.0.0-beta2 filter %s",
 		callsign, passcode, opts["filter"])
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Server replies with version
 	resp, err := c.ReadLine()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Validate connection status.
-	err = loggedIn(resp)
+	if strings.HasPrefix(resp, "# aprsc ") {
+		log.Info(fmt.Sprintf("APRS-IS -> %s: %s", callsign, resp))
+	}
+
+	// Server replies with authentication response
+	resp, err = c.ReadLine()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Validate authentication response.
+	err = loggedIn(resp, callsign)
 	if err != nil {
 		log.Fatal(err)
 	} else {
-		log.Info("Authenticated with APRS-IS.")
+		log.Info("Successfully authenticated with APRS-IS.")
 	}
 
 	conn = c
 	connected = true
+
+	go func() {
+		log.Info("Listening for responses from APRS-IS.")
+
+		for {
+			message, err := c.ReadLine()
+
+			if err != nil {
+				log.Error(err)
+			} else if !strings.HasPrefix(message, "# aprsc") {
+				// These are other packets coming _from_ APRS-IS
+				log.Info(fmt.Sprintf("APRS-IS -> %s: %s", callsign, message))
+			}
+		}
+	}()
 }
 
 // Disconnect disconnects from APRS-IS.
@@ -111,19 +137,10 @@ func validate(options map[string]string) (string, string, string, error) {
 	return options["server"], options["call-sign"], options["passcode"], nil
 }
 
-func loggedIn(resp string) error {
-	// TODO: Switch?
-	if strings.HasPrefix(resp, "# logresp ") {
-		return errors.New(resp)
+func loggedIn(resp, callsign string) error {
+	if strings.HasPrefix(resp, fmt.Sprintf("# logresp %s verified", callsign)) {
+		return nil
 	}
 
-	if strings.HasPrefix(resp, "# invalid ") {
-		return errors.New(resp)
-	}
-
-	if strings.HasPrefix(resp, "# login by user not allowed") {
-		return errors.New(resp)
-	}
-
-	return nil
+	return errors.New(resp)
 }
