@@ -38,7 +38,7 @@ If you're looking to set up Ionosphere on a Pi, there's a [helpful script here](
 * Ensure your RTL-SDR device is connected.
 * Download and extract the latest [binary release](https://github.com/cceremuga/ionosphere/releases/) for your OS.
 * Edit `config/config.yml` to match your needs.
-  * If configured for automatic beaconing, you may edit the config `comment` element to include a latitude, longitude, and symbol i.e. `!DDMM.hhN/DDDMM.hhWR&Ionosphere I-Gate`
+  * If configured for automatic beaconing, you may edit the config `comment` element to include a latitude, longitude, and symbol i.e. `!DDMM.hhN/DDDMM.hhWIhttp://ionosphere.xyz`
   * Additional documentation on the [APRS protocol](http://www.aprs.net/vm/DOS/PROTOCOL.HTM) and [symbols](http://www.aprs.org/symbols.html) is available.
 * In a terminal, from the directory containing Ionosphere, run `./ionosphere`.
 
