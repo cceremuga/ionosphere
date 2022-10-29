@@ -17,6 +17,12 @@ var connected = false
 var conn *textproto.Conn
 var opts map[string]string
 
+type config struct {
+	server   string
+	callsign string
+	passcode string
+}
+
 // Connect connects to APRS-IS with the specified options.
 func Connect(options map[string]string) {
 	if connected {
@@ -25,8 +31,7 @@ func Connect(options map[string]string) {
 
 	cyan := color.New(color.FgCyan).SprintFunc()
 
-	// TODO: Change to struct some time.
-	server, callsign, passcode, err := validate(options)
+	config, err := validate(options)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -35,16 +40,16 @@ func Connect(options map[string]string) {
 	opts = options
 
 	// Connect
-	c, err := textproto.Dial("tcp", server)
+	c, err := textproto.Dial("tcp", config.server)
 	if err != nil {
 		log.Fatal(err)
 	} else {
-		log.Info(fmt.Sprintf("Connected to APRS-IS: %s", server))
+		log.Info(fmt.Sprintf("Connected to APRS-IS: %s", config.server))
 	}
 
 	// Send auth
 	err = c.PrintfLine("user %s pass %s vers Ionosphere 1.0.0-beta2 filter %s",
-		callsign, passcode, opts["filter"])
+		config.callsign, config.passcode, opts["filter"])
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -56,7 +61,7 @@ func Connect(options map[string]string) {
 	}
 
 	if strings.HasPrefix(resp, "# aprsc ") {
-		log.Info(fmt.Sprintf("APRS-IS -> %s: %s", cyan(callsign), resp))
+		log.Info(fmt.Sprintf("APRS-IS -> %s: %s", cyan(config.callsign), resp))
 	}
 
 	// Server replies with authentication response
@@ -66,7 +71,7 @@ func Connect(options map[string]string) {
 	}
 
 	// Validate authentication response.
-	err = loggedIn(resp, callsign)
+	err = loggedIn(resp, config.callsign)
 	if err != nil {
 		log.Fatal(err)
 	} else {
@@ -93,7 +98,8 @@ func Connect(options map[string]string) {
 						p.Dst.Call, p.Position.Latitude, p.Position.Longitude, p.Comment)
 				}
 
-				log.Info(fmt.Sprintf("APRS-IS -> %s: %s", cyan(callsign), fmtPacket))
+				log.Info(fmt.Sprintf(
+					"APRS-IS -> %s: %s", cyan(config.callsign), fmtPacket))
 			}
 		}
 	}()
@@ -132,20 +138,24 @@ func UploadRaw(s string) {
 	}
 }
 
-func validate(options map[string]string) (string, string, string, error) {
+func validate(options map[string]string) (*config, error) {
 	if options["server"] == "" {
-		return "", "", "", errors.New("no server address specified")
+		return nil, errors.New("no server address specified")
 	}
 
 	if options["call-sign"] == "" {
-		return "", "", "", errors.New("no callsign specified")
+		return nil, errors.New("no callsign specified")
 	}
 
 	if options["passcode"] == "" {
-		return "", "", "", errors.New("no passcode specified")
+		return nil, errors.New("no passcode specified")
 	}
 
-	return options["server"], options["call-sign"], options["passcode"], nil
+	return &config{
+		options["server"],
+		options["call-sign"],
+		options["passcode"],
+	}, nil
 }
 
 func loggedIn(resp, callsign string) error {
