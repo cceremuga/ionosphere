@@ -13,7 +13,7 @@ import (
 	"github.com/cceremuga/ionosphere/subprocesses/multimon"
 	"github.com/cceremuga/ionosphere/subprocesses/rtlsdr"
 	"github.com/cceremuga/ionosphere/tasks/beacon"
-	"github.com/gookit/color"
+	"github.com/fatih/color"
 )
 
 const logo = `
@@ -22,10 +22,11 @@ const logo = `
  _/ // _ \/ _ \/ _ \(_-</ _ \/ _ \/ -_) __/ -_)
 /___/\___/_//_/\___/___/ .__/_//_/\__/_/  \__/
                       /_/
+
 `
 
 func main() {
-	color.LightBlue.Println(logo)
+	color.Cyan(logo)
 	c := config.Load()
 
 	rtl := rtlsdr.Build(&c.Rtl)
