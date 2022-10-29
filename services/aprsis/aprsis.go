@@ -23,7 +23,7 @@ func Connect(options map[string]string) {
 		return
 	}
 
-	magenta := color.New(color.FgMagenta).SprintFunc()
+	cyan := color.New(color.FgCyan).SprintFunc()
 
 	// TODO: Change to struct some time.
 	server, callsign, passcode, err := validate(options)
@@ -56,7 +56,7 @@ func Connect(options map[string]string) {
 	}
 
 	if strings.HasPrefix(resp, "# aprsc ") {
-		log.Info(fmt.Sprintf("APRS-IS -> %s: %s", magenta(callsign), resp))
+		log.Info(fmt.Sprintf("APRS-IS -> %s: %s", cyan(callsign), resp))
 	}
 
 	// Server replies with authentication response
@@ -93,7 +93,7 @@ func Connect(options map[string]string) {
 						p.Dst.Call, p.Position.Latitude, p.Position.Longitude, p.Comment)
 				}
 
-				log.Info(fmt.Sprintf("APRS-IS -> %s: %s", magenta(callsign), fmtPacket))
+				log.Info(fmt.Sprintf("APRS-IS -> %s: %s", cyan(callsign), fmtPacket))
 			}
 		}
 	}()
