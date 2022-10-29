@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/cceremuga/ionosphere/services/log"
+	"github.com/fatih/color"
 	"github.com/pd0mz/go-aprs"
 )
 
@@ -20,6 +21,8 @@ func Connect(options map[string]string) {
 	if connected {
 		return
 	}
+
+	magenta := color.New(color.FgMagenta).SprintFunc()
 
 	// TODO: Change to struct some time.
 	server, callsign, passcode, err := validate(options)
@@ -52,7 +55,7 @@ func Connect(options map[string]string) {
 	}
 
 	if strings.HasPrefix(resp, "# aprsc ") {
-		log.Info(fmt.Sprintf("APRS-IS -> %s: %s", callsign, resp))
+		log.Info(fmt.Sprintf("APRS-IS -> %s: %s", magenta(callsign), resp))
 	}
 
 	// Server replies with authentication response
@@ -82,7 +85,7 @@ func Connect(options map[string]string) {
 				log.Error(err)
 			} else if !strings.HasPrefix(message, "# aprsc") {
 				// These are other packets coming _from_ APRS-IS
-				log.Info(fmt.Sprintf("APRS-IS -> %s: %s", callsign, message))
+				log.Info(fmt.Sprintf("APRS-IS -> %s: %s", magenta(callsign), message))
 			}
 		}
 	}()

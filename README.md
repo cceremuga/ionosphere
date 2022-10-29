@@ -12,6 +12,7 @@ This project is the next-generation successor to [PyPacket](https://gihub.com/cc
     * Updated Golang version to latest.
     * Added additional connection debugging for APRS-IS.
     * Fixed several APRS-IS protocol bugs.
+    * Added owncall highlighting to stdout.
     * Documentation updates.
 * 4/12/2021
     * Fixed beacon interval.

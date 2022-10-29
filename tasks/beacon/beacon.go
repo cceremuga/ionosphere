@@ -10,6 +10,7 @@ import (
 	"github.com/cceremuga/ionosphere/services/aprsis"
 	"github.com/cceremuga/ionosphere/services/config"
 	"github.com/cceremuga/ionosphere/services/log"
+	"github.com/fatih/color"
 )
 
 // Start will initiate a Ticker (if enabled) to upload beacons at intervals >= 10m.
@@ -52,7 +53,8 @@ func tickerInterval(c *config.Beacon) {
 		Src:     c.Call,
 		Comment: c.Comment,
 	}
-	log.Println(fmt.Sprintf("%s -> APRS-IS: %s", c.Call, b.String()))
+	magenta := color.New(color.FgMagenta).SprintFunc()
+	log.Println(fmt.Sprintf("%s -> APRS-IS: %s", magenta(c.Call), b.String()))
 	aprsis.UploadRaw(b.String())
 }
 
