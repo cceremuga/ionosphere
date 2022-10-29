@@ -3,12 +3,10 @@ package packet
 
 import (
 	"bufio"
-	"fmt"
 	"io"
-	"strings"
 
+	"github.com/cceremuga/ionosphere/framework/marshaler"
 	"github.com/cceremuga/ionosphere/services/handler"
-	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/pd0mz/go-aprs"
 )
 
@@ -24,7 +22,7 @@ func Decode(r io.Reader) {
 		}
 
 		// Attempt parse.
-		p := unmarshal(raw)
+		p := marshaler.Unmarshal(raw)
 
 		if p == nil {
 			continue
@@ -46,26 +44,4 @@ func handle(p *aprs.Packet) {
 	for i := 0; i < len(handlers); i++ {
 		handlers[i].Handle(p)
 	}
-}
-
-const prefix = "APRS: "
-
-func unmarshal(raw string) *aprs.Packet {
-	raw = strings.TrimLeft(raw, prefix)
-
-	defer func() {
-		if err := recover(); err != nil {
-			log.Error(err, fmt.Sprintf(" (%s)", raw))
-		}
-	}()
-
-	// Panic recovery above due to https://github.com/pd0mz/go-aprs/issues/5
-	p, err := aprs.ParsePacket(raw)
-
-	if err != nil {
-		log.Warn(err, fmt.Sprintf(" (%s)", raw))
-		return nil
-	}
-
-	return &p
 }

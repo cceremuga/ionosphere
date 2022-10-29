@@ -7,6 +7,7 @@ import (
 	"net/textproto"
 	"strings"
 
+	"github.com/cceremuga/ionosphere/framework/marshaler"
 	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/fatih/color"
 	"github.com/pd0mz/go-aprs"
@@ -84,8 +85,15 @@ func Connect(options map[string]string) {
 			if err != nil {
 				log.Error(err)
 			} else if !strings.HasPrefix(message, "# aprsc") {
-				// These are other packets coming _from_ APRS-IS
-				log.Info(fmt.Sprintf("APRS-IS -> %s: %s", magenta(callsign), message))
+				fmtPacket := message
+				// These are typically other packets coming _from_ APRS-IS
+				p := marshaler.Unmarshal(message)
+				if p != nil {
+					fmtPacket = fmt.Sprintf("%s -> %s (%f, %f) %s", p.Src.Call,
+						p.Dst.Call, p.Position.Latitude, p.Position.Longitude, p.Comment)
+				}
+
+				log.Info(fmt.Sprintf("APRS-IS -> %s: %s", magenta(callsign), fmtPacket))
 			}
 		}
 	}()
