@@ -4,16 +4,16 @@
 
 Receive, decode, log, upload [APRS](http://www.aprs.org/) packets using low cost [RTL-SDR](http://osmocom.org/projects/sdr/wiki/rtl-sdr) devices.
 
-This project is the next-generation successor to [PyPacket](https://gihub.com/cceremuga/pypacket).
-
-It is **very much under active development** and should be considered in a "beta" state at best. Please submit bug reports as you encounter them.
+This project is the next-generation successor to [PyPacket](https://gihub.com/cceremuga/pypacket). It should be considered in a "beta" state at best. Please submit bug reports as you encounter them.
 
 ## Release Notes
 
-* 10/??/2022 ([1.0.0-beta2 release]()
+* 10/29/2022 ([1.0.0-beta2 release]()
     * Updated Golang version to latest.
-    * Added additional connection debugging for APRS-IS
-    * Documentation updates
+    * Added additional connection debugging for APRS-IS.
+    * Additional info logging added for beacons.
+    * Documentation updates.
+    * MacOS arm64 binaries added.
 * 4/12/2021
     * Fixed beacon interval.
     * Updated dependencies, removed some.
@@ -38,6 +38,8 @@ If you're looking to set up Ionosphere on a Pi, there's a [helpful script here](
 * Ensure your RTL-SDR device is connected.
 * Download and extract the latest [binary release](https://github.com/cceremuga/ionosphere/releases/) for your OS.
 * Edit `config/config.yml` to match your needs.
+  * If configured for automatic beaconing, you may edit the config `comment` element to include a latitude, longitude, and symbol i.e. `!DDMM.hhN/DDDMM.hhWR&Ionosphere I-Gate`
+  * Additional documentation on the [APRS protocol](http://www.aprs.net/vm/DOS/PROTOCOL.HTM) and [symbols](http://www.aprs.org/symbols.html) is available.
 * In a terminal, from the directory containing Ionosphere, run `./ionosphere`.
 
 ## Roadmap

@@ -48,11 +48,11 @@ func startTicker(c *config.Beacon) {
 }
 
 func tickerInterval(c *config.Beacon) {
-	log.Println("Uploading beacon.")
 	b := beacon.Beacon{
 		Src:     c.Call,
 		Comment: c.Comment,
 	}
+	log.Println(fmt.Sprintf("Uploading beacon: %s", b.String()))
 	aprsis.UploadRaw(b.String())
 }
 
