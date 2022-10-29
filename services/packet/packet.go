@@ -3,6 +3,7 @@ package packet
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 
 	"github.com/cceremuga/ionosphere/framework/marshaler"
@@ -25,7 +26,7 @@ func Decode(r io.Reader) {
 		p, err := marshaler.Unmarshal(raw)
 
 		if err != nil {
-			log.Warn(err)
+			log.Warn(fmt.Sprintf("%s: %s", err, raw))
 			continue
 		}
 
