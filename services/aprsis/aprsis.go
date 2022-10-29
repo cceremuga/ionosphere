@@ -87,8 +87,8 @@ func Connect(options map[string]string) {
 			} else if !strings.HasPrefix(message, "# aprsc") {
 				fmtPacket := message
 				// These are typically other packets coming _from_ APRS-IS
-				p := marshaler.Unmarshal(message)
-				if p != nil {
+				p, marshalErr := marshaler.Unmarshal(message)
+				if marshalErr == nil {
 					fmtPacket = fmt.Sprintf("%s -> %s (%f, %f) %s", p.Src.Call,
 						p.Dst.Call, p.Position.Latitude, p.Position.Longitude, p.Comment)
 				}

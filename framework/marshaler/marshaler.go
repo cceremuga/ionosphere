@@ -11,7 +11,8 @@ import (
 
 const prefix = "APRS: "
 
-func Unmarshal(raw string) *aprs.Packet {
+// Unmarshals a raw APRS packet string to a Packet
+func Unmarshal(raw string) (*aprs.Packet, error) {
 	raw = strings.TrimLeft(raw, prefix)
 
 	defer func() {
@@ -23,9 +24,5 @@ func Unmarshal(raw string) *aprs.Packet {
 	// Panic recovery above due to https://github.com/pd0mz/go-aprs/issues/5
 	p, err := aprs.ParsePacket(raw)
 
-	if err != nil {
-		return nil
-	}
-
-	return &p
+	return &p, err
 }

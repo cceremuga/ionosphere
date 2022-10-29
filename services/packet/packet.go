@@ -7,6 +7,7 @@ import (
 
 	"github.com/cceremuga/ionosphere/framework/marshaler"
 	"github.com/cceremuga/ionosphere/services/handler"
+	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/pd0mz/go-aprs"
 )
 
@@ -21,10 +22,10 @@ func Decode(r io.Reader) {
 			continue
 		}
 
-		// Attempt parse.
-		p := marshaler.Unmarshal(raw)
+		p, err := marshaler.Unmarshal(raw)
 
-		if p == nil {
+		if err != nil {
+			log.Warn(err)
 			continue
 		}
 
