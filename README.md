@@ -10,8 +10,10 @@ It is **very much under active development** and should be considered in a "beta
 
 ## Release Notes
 
-* 4/??/2022 ([1.0.0-beta2 release]()
-    *
+* 10/??/2022 ([1.0.0-beta2 release]()
+    * Updated Golang version to latest.
+    * Added additional connection debugging for APRS-IS
+    * Documentation updates
 * 4/12/2021
     * Fixed beacon interval.
     * Updated dependencies, removed some.
@@ -28,7 +30,7 @@ To run Ionosphere, the following are required.
 * [rtl_fm](http://osmocom.org/projects/sdr/wiki/rtl-sdr)
 * [multimon-ng](https://github.com/EliasOenal/multimon-ng)
 
-We use a Raspberry Pi. They're simple to use, compatible, and frankly, just pretty awesome.
+If you're looking to set up Ionosphere on a Pi, there's a [helpful script here](https://github.com/g7gpr/rpiionosphereinstaller).
 
 ## Usage
 

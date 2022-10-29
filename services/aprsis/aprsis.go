@@ -5,6 +5,7 @@ import (
 	"errors"
 	"net/textproto"
 	"strings"
+	"fmt"
 
 	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/pd0mz/go-aprs"
@@ -33,6 +34,8 @@ func Connect(options map[string]string) {
 	c, err := textproto.Dial("tcp", server)
 	if err != nil {
 		log.Fatal(err)
+	} else {
+		log.Info(fmt.Sprintf("Connected to APRS-IS: %s", server))
 	}
 
 	// Auth
@@ -51,6 +54,8 @@ func Connect(options map[string]string) {
 	err = loggedIn(resp)
 	if err != nil {
 		log.Fatal(err)
+	} else {
+		log.Info("Authenticated with APRS-IS.")
 	}
 
 	conn = c
