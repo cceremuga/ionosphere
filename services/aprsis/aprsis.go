@@ -84,7 +84,7 @@ func Connect(options map[string]string) {
 
 			if err != nil {
 				log.Error(err)
-			} else if !strings.HasPrefix(message, "# aprsc") {
+			} else if !isReadReceipt(message) {
 				fmtPacket := message
 				// These are typically other packets coming _from_ APRS-IS
 				p, marshalErr := marshaler.Unmarshal(message)
@@ -154,4 +154,16 @@ func loggedIn(resp, callsign string) error {
 	}
 
 	return errors.New(resp)
+}
+
+func isReadReceipt(message string) bool {
+	if strings.HasPrefix(message, "# aprsc") {
+		return true
+	}
+
+	if strings.HasPrefix(message, "# javAPRSSrvr") {
+		return true
+	}
+
+	return false
 }
