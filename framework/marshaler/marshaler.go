@@ -24,7 +24,6 @@ func Unmarshal(raw string) *aprs.Packet {
 	p, err := aprs.ParsePacket(raw)
 
 	if err != nil {
-		log.Warn(err, fmt.Sprintf(" (%s)", raw))
 		return nil
 	}
 
