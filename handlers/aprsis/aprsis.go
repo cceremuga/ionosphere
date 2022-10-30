@@ -50,7 +50,6 @@ func (s APRSIS) Enabled() bool {
 // Start initializes a connection to APRS-IS.
 func (s APRSIS) Start() {
 	aprsis.Connect(opts)
-	log.Println("Connected to APRS-IS.")
 }
 
 // Handle uploads packets to APRS-IS if configured.

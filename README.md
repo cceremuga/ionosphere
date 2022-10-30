@@ -1,15 +1,21 @@
 <img src="./logo.png" alt="Ionosphere Logo" width="350">
 
-[![Build Status](https://app.travis-ci.com/cceremuga/ionosphere.svg?branch=master)](https://app.travis-ci.com/cceremuga/ionosphere) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/12d209f6a0af41e594cdc4e881fd4d99)](https://www.codacy.com/gh/cceremuga/ionosphere/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cceremuga/ionosphere&amp;utm_campaign=Badge_Grade) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
+[![Build Status](https://app.travis-ci.com/cceremuga/ionosphere.svg?branch=master)](https://app.travis-ci.com/cceremuga/ionosphere) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
 
 Receive, decode, log, upload [APRS](http://www.aprs.org/) packets using low cost [RTL-SDR](http://osmocom.org/projects/sdr/wiki/rtl-sdr) devices.
 
-This project is the next-generation successor to [PyPacket](https://gihub.com/cceremuga/pypacket).
-
-It is **very much under active development** and should be considered in a "beta" state at best. Please submit bug reports as you encounter them.
+This project is the next-generation successor to [PyPacket](https://gihub.com/cceremuga/pypacket) with a number of enhancements and simplified cross-platform support. Please submit bug reports as you encounter them.
 
 ## Release Notes
 
+* 10/30/2022 🎃 ([1.0.0 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.0))
+    * Updated Golang version to latest.
+    * Updated dependency packages to latest.
+    * Added additional connection debugging for APRS-IS.
+    * Fixed several APRS-IS protocol bugs.
+    * Added APRS-IS digipeat output.
+    * Documentation updates.
+    * Fixed numerous small bugs.
 * 4/12/2021
     * Fixed beacon interval.
     * Updated dependencies, removed some.
@@ -26,20 +32,22 @@ To run Ionosphere, the following are required.
 * [rtl_fm](http://osmocom.org/projects/sdr/wiki/rtl-sdr)
 * [multimon-ng](https://github.com/EliasOenal/multimon-ng)
 
-We use a Raspberry Pi. They're simple to use, compatible, and frankly, just pretty awesome.
+If you're looking to set up Ionosphere on a Pi, there's a [helpful script here](https://github.com/g7gpr/rpiionosphereinstaller).
 
 ## Usage
 
 * Make sure all software in the Requirements section is installed.
 * Ensure your RTL-SDR device is connected.
-* Download and extract the latest release matching your system.
+* Download and extract the latest [binary release](https://github.com/cceremuga/ionosphere/releases/) for your OS.
 * Edit `config/config.yml` to match your needs.
+  * If configured for automatic beaconing, you may edit the `comment` element to include a latitude, longitude, and symbol i.e. `!DDMM.hhN/DDDMM.hhWIhttp://ionosphere.xyz RX IGate`
+  * You may find additional documentation on the [APRS protocol](http://www.aprs.net/vm/DOS/PROTOCOL.HTM) and [symbols](http://www.aprs.org/symbols.html) useful for custom comment formats.
 * In a terminal, from the directory containing Ionosphere, run `./ionosphere`.
 
 ## Roadmap
 
 * Unit tests. Shameful there are none yet! :sadpanda:
-* Plugin framework.
+* Live map showing packets as they are received and uploaded.
 
 ## Security and Privacy
 
