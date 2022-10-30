@@ -34,8 +34,15 @@ func (s Stdout) Start() {}
 // Handle prints packet information to stdout via the log package.
 func (s Stdout) Handle(p *aprs.Packet) {
 	green := color.New(color.FgHiGreen).SprintFunc()
-	log.Printf("%s %s -> %s (%f, %f) %s", green("[PACKET]"), p.Src.Call,
-		p.Dst.Call, p.Position.Latitude, p.Position.Longitude, p.Comment)
+	log.Printf("%s %s -> %s [%s] (%f, %f) %s",
+		green("[PACKET]"),
+		p.Src.Call,
+		p.Dst.Call,
+		p.Payload.Type().String(),
+		p.Position.Latitude,
+		p.Position.Longitude,
+		p.Comment,
+	)
 }
 
 // Stop does not do anything in this implementation.

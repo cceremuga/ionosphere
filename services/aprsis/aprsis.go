@@ -90,15 +90,21 @@ func Connect(options map[string]string) {
 			if err != nil {
 				log.Error(err)
 			} else if !isReadReceipt(message) {
-				fmtPacket := message
 				// These are typically other packets coming _from_ APRS-IS
 				p, marshalErr := marshaler.Unmarshal(message)
 				if marshalErr == nil {
-					fmtPacket = fmt.Sprintf("%s -> %s (%f, %f) %s", p.Src.Call,
-						p.Dst.Call, p.Position.Latitude, p.Position.Longitude, p.Comment)
+					fmtPacket := fmt.Sprintf("%s -> %s [%s] (%f, %f) %s",
+						p.Src.Call,
+						p.Dst.Call,
+						p.Payload.Type().String(),
+						p.Position.Latitude,
+						p.Position.Longitude,
+						p.Comment,
+					)
+					log.Info(fmt.Sprintf("%s %s", cyan("[APRS-IS DIGIPEAT]"), fmtPacket))
+				} else {
+					log.Info(fmt.Sprintf("%s %s", cyan("[APRS-IS OTHER]"), message))
 				}
-
-				log.Info(fmt.Sprintf("%s %s", cyan("[FROM APRS-IS]"), fmtPacket))
 			}
 		}
 	}()
