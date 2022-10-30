@@ -30,8 +30,8 @@ func Unmarshal(raw string) (*aprs.Packet, error) {
 // Modified from https://github.com/pd0mz/go-aprs/blob/master/data_type.go
 var (
 	dataTypeName = map[aprs.DataType]string{
-		0x1c: "Current Mic-E Data",
-		0x1d: "Old Mic-E Data",
+		0x1c: "Mic-E Data",
+		0x1d: "Mic-E Data",
 		'!':  "Position",
 		'#':  "Peet Bros U-II Weather Station",
 		'$':  "Raw GPS Data or Ultimeter 2000",
@@ -51,7 +51,7 @@ var (
 		'T':  "Telemetry Data",
 		'[':  "Maidenhead Grid Locator Beacon",
 		'_':  "Weather Report",
-		'`':  "Current Mic-E Data",
+		'`':  "Mic-E Data",
 		'{':  "User-Defined APRS Packet Format",
 		'}':  "Third-party Traffic",
 	}
