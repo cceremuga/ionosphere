@@ -26,3 +26,41 @@ func Unmarshal(raw string) (*aprs.Packet, error) {
 
 	return &p, err
 }
+
+// Modified from https://github.com/pd0mz/go-aprs/blob/master/data_type.go
+var (
+	dataTypeName = map[aprs.DataType]string{
+		0x1c: "Current Mic-E Data",
+		0x1d: "Old Mic-E Data",
+		'!':  "Position",
+		'#':  "Peet Bros U-II Weather Station",
+		'$':  "Raw GPS data or Ultimeter 2000",
+		'%':  "Agrelo DFJr / MicroFinder",
+		'"':  "Old Mic-E Data",
+		')':  "Item",
+		'*':  "Peet Bros U-II Weather Station",
+		',':  "Invalid data or test data",
+		'/':  "Position",
+		':':  "Message",
+		';':  "Object",
+		'<':  "Station Capabilities",
+		'=':  "Position",
+		'>':  "Status",
+		'?':  "Query",
+		'@':  "Position",
+		'T':  "Telemetry data",
+		'[':  "Maidenhead grid locator beacon",
+		'_':  "Weather Report",
+		'`':  "Current Mic-E Data",
+		'{':  "User-Defined APRS packet format",
+		'}':  "Third-party traffic",
+	}
+)
+
+func PacketTypeName(t aprs.DataType) string {
+	if s, ok := dataTypeName[t]; ok {
+		return s
+	}
+
+	return fmt.Sprintf("Unknown packet type %#02x", byte(t))
+}

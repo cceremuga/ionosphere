@@ -2,7 +2,9 @@
 package stdout
 
 import (
+	"github.com/cceremuga/ionosphere/framework/marshaler"
 	"github.com/cceremuga/ionosphere/services/log"
+
 	"github.com/fatih/color"
 	"github.com/pd0mz/go-aprs"
 )
@@ -38,7 +40,7 @@ func (s Stdout) Handle(p *aprs.Packet) {
 		green("[PACKET]"),
 		p.Src.Call,
 		p.Dst.Call,
-		p.Payload.Type().String(),
+		marshaler.PacketTypeName(p.Payload.Type()),
 		p.Position.Latitude,
 		p.Position.Longitude,
 		p.Comment,

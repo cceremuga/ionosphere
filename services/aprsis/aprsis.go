@@ -96,7 +96,7 @@ func Connect(options map[string]string) {
 					fmtPacket := fmt.Sprintf("%s -> %s [%s] (%f, %f) %s",
 						p.Src.Call,
 						p.Dst.Call,
-						p.Payload.Type().String(),
+						marshaler.PacketTypeName(p.Payload.Type()),
 						p.Position.Latitude,
 						p.Position.Longitude,
 						p.Comment,
