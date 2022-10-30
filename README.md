@@ -8,7 +8,7 @@ This project is the next-generation successor to [PyPacket](https://gihub.com/cc
 
 ## Release Notes
 
-* 10/30/2022 🎃 ([1.0.0-beta2 release]()
+* 10/30/2022 🎃 ([1.0.0-beta2 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.0-beta2)
     * Updated Golang version to latest.
     * Added additional connection debugging for APRS-IS.
     * Fixed several APRS-IS protocol bugs.
