@@ -10,10 +10,12 @@ This project is the next-generation successor to [PyPacket](https://gihub.com/cc
 
 * 10/30/2022 🎃 ([1.0.0 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.0))
     * Updated Golang version to latest.
+    * Updated dependency packages to latest.
     * Added additional connection debugging for APRS-IS.
     * Fixed several APRS-IS protocol bugs.
-    * Added owncall highlighting to stdout.
+    * Added APRS-IS digipeat output.
     * Documentation updates.
+    * Fixed numerous small bugs.
 * 4/12/2021
     * Fixed beacon interval.
     * Updated dependencies, removed some.
