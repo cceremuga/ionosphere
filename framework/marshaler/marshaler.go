@@ -34,12 +34,12 @@ var (
 		0x1d: "Old Mic-E Data",
 		'!':  "Position",
 		'#':  "Peet Bros U-II Weather Station",
-		'$':  "Raw GPS data or Ultimeter 2000",
+		'$':  "Raw GPS Data or Ultimeter 2000",
 		'%':  "Agrelo DFJr / MicroFinder",
 		'"':  "Old Mic-E Data",
 		')':  "Item",
 		'*':  "Peet Bros U-II Weather Station",
-		',':  "Invalid data or test data",
+		',':  "Invalid Data or Test Data",
 		'/':  "Position",
 		':':  "Message",
 		';':  "Object",
@@ -48,12 +48,12 @@ var (
 		'>':  "Status",
 		'?':  "Query",
 		'@':  "Position",
-		'T':  "Telemetry data",
-		'[':  "Maidenhead grid locator beacon",
+		'T':  "Telemetry Data",
+		'[':  "Maidenhead Grid Locator Beacon",
 		'_':  "Weather Report",
 		'`':  "Current Mic-E Data",
-		'{':  "User-Defined APRS packet format",
-		'}':  "Third-party traffic",
+		'{':  "User-Defined APRS Packet Format",
+		'}':  "Third-party Traffic",
 	}
 )
 
@@ -62,5 +62,5 @@ func PacketTypeName(t aprs.DataType) string {
 		return s
 	}
 
-	return fmt.Sprintf("Unknown packet type %#02x", byte(t))
+	return fmt.Sprintf("Unknown Packet Type %#02x", byte(t))
 }
