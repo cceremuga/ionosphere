@@ -54,7 +54,7 @@ func tickerInterval(c *config.Beacon) {
 		Comment: c.Comment,
 	}
 	cyan := color.New(color.FgCyan).SprintFunc()
-	log.Println(fmt.Sprintf("%s -> APRS-IS: %s", cyan(c.Call), b.String()))
+	log.Println(fmt.Sprintf("%s %s", cyan("[TO APRS-IS]"), b.String()))
 	aprsis.UploadRaw(b.String())
 }
 

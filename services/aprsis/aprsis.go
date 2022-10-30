@@ -98,8 +98,7 @@ func Connect(options map[string]string) {
 						p.Dst.Call, p.Position.Latitude, p.Position.Longitude, p.Comment)
 				}
 
-				log.Info(fmt.Sprintf(
-					"APRS-IS -> %s: %s", cyan(config.callsign), fmtPacket))
+				log.Info(fmt.Sprintf("%s %s", cyan("[FROM APRS-IS]"), fmtPacket))
 			}
 		}
 	}()

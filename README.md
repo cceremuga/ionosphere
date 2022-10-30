@@ -4,7 +4,7 @@
 
 Receive, decode, log, upload [APRS](http://www.aprs.org/) packets using low cost [RTL-SDR](http://osmocom.org/projects/sdr/wiki/rtl-sdr) devices.
 
-This project is the next-generation successor to [PyPacket](https://gihub.com/cceremuga/pypacket). It should be considered in a "beta" state at best. Please submit bug reports as you encounter them.
+This project is the next-generation successor to [PyPacket](https://gihub.com/cceremuga/pypacket) with a number of enhancements and simplified cross-platform support. Please submit bug reports as you encounter them.
 
 ## Release Notes
 
@@ -38,14 +38,14 @@ If you're looking to set up Ionosphere on a Pi, there's a [helpful script here](
 * Ensure your RTL-SDR device is connected.
 * Download and extract the latest [binary release](https://github.com/cceremuga/ionosphere/releases/) for your OS.
 * Edit `config/config.yml` to match your needs.
-  * If configured for automatic beaconing, you may edit the config `comment` element to include a latitude, longitude, and symbol i.e. `!DDMM.hhN/DDDMM.hhWIhttp://ionosphere.xyz`
-  * Additional documentation on the [APRS protocol](http://www.aprs.net/vm/DOS/PROTOCOL.HTM) and [symbols](http://www.aprs.org/symbols.html) is available.
+  * If configured for automatic beaconing, you may edit the `comment` element to include a latitude, longitude, and symbol i.e. `!DDMM.hhN/DDDMM.hhWIhttp://ionosphere.xyz RX IGate`
+  * You may find additional documentation on the [APRS protocol](http://www.aprs.net/vm/DOS/PROTOCOL.HTM) and [symbols](http://www.aprs.org/symbols.html) useful for custom comment formats.
 * In a terminal, from the directory containing Ionosphere, run `./ionosphere`.
 
 ## Roadmap
 
 * Unit tests. Shameful there are none yet! :sadpanda:
-* Plugin framework.
+* Live map showing packets as they are received and uploaded.
 
 ## Security and Privacy
 
