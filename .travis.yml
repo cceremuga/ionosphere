@@ -1,7 +1,0 @@
-language: go
-go:
-  - 1.19.x
-script:
-  - go get -v
-  - make test
-  - make compile
