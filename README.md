@@ -1,6 +1,6 @@
 <img src="./logo.png" alt="Ionosphere Logo" width="350">
 
-[![Build Status](https://app.travis-ci.com/cceremuga/ionosphere.svg?branch=master)](https://app.travis-ci.com/cceremuga/ionosphere) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
+![Build Status](https://github.com/cceremuga/ionosphere/actions/workflows/ci.yml/badge.svg) ![Dependency Status](https://github.com/cceremuga/ionosphere/actions/workflows/dependency-review.yml/badge.svg) ![GitHub](https://img.shields.io/github/license/cceremuga/ionosphere)
 
 Receive, decode, log, upload [APRS](http://www.aprs.org/) packets using low cost [RTL-SDR](http://osmocom.org/projects/sdr/wiki/rtl-sdr) devices.
 
