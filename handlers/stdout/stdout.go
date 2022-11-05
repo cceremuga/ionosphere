@@ -2,6 +2,8 @@
 package stdout
 
 import (
+	"fmt"
+
 	"github.com/cceremuga/ionosphere/framework/marshaler"
 	"github.com/cceremuga/ionosphere/services/log"
 
@@ -36,15 +38,8 @@ func (s Stdout) Start() {}
 // Handle prints packet information to stdout via the log package.
 func (s Stdout) Handle(p *aprs.Packet) {
 	green := color.New(color.FgHiGreen).SprintFunc()
-	log.Printf("%s %s -> %s [%s] (%f, %f) %s",
-		green("[PACKET]"),
-		p.Src.Call,
-		p.Dst.Call,
-		marshaler.PacketTypeName(p.Payload.Type()),
-		p.Position.Latitude,
-		p.Position.Longitude,
-		p.Comment,
-	)
+	log.Info(fmt.Sprintf(
+		"%s %s", green("[PACKET]"), marshaler.ToLogFormat(p)))
 }
 
 // Stop does not do anything in this implementation.

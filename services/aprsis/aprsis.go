@@ -4,6 +4,7 @@ package aprsis
 import (
 	"errors"
 	"fmt"
+	"io"
 	"net/textproto"
 	"strings"
 
@@ -89,22 +90,23 @@ func Connect(options map[string]string) {
 
 			if err != nil {
 				log.Error(err)
+				if err == io.EOF {
+					log.Info("Restart Ionosphere to reconnect. " +
+						"Auto-reconnect is not implemented yet.")
+					Disconnect()
+					break
+				}
 			} else if !isReadReceipt(message) {
 				// These are typically other packets coming _from_ APRS-IS
 				p, marshalErr := marshaler.Unmarshal(message)
-				if marshalErr == nil {
-					fmtPacket := fmt.Sprintf("%s -> %s [%s] (%f, %f) %s",
-						p.Src.Call,
-						p.Dst.Call,
-						marshaler.PacketTypeName(p.Payload.Type()),
-						p.Position.Latitude,
-						p.Position.Longitude,
-						p.Comment,
-					)
-					log.Info(fmt.Sprintf("%s %s", cyan("[APRS-IS DIGIPEAT]"), fmtPacket))
-				} else {
+
+				if marshalErr != nil {
 					log.Info(fmt.Sprintf("%s %s", cyan("[APRS-IS OTHER]"), message))
+					continue
 				}
+
+				log.Info(fmt.Sprintf(
+					"%s %s", cyan("[APRS-IS DIGIPEAT]"), marshaler.ToLogFormat(p)))
 			}
 		}
 	}()

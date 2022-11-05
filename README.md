@@ -8,6 +8,9 @@ This project is the next-generation successor to [PyPacket](https://gihub.com/cc
 
 ## Release Notes
 
+* 11/4/2022 ([1.0.1 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.1))
+    * Fixed an infinite loop when an unexpected APRS-IS connection drop occurs.
+    * Fixed panic crashes caused when parsing packet type names.
 * 10/30/2022 🎃 ([1.0.0 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.0))
     * Updated Golang version to latest.
     * Updated dependency packages to latest.

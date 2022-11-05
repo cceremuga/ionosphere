@@ -27,9 +27,30 @@ func Unmarshal(raw string) (*aprs.Packet, error) {
 	return &p, err
 }
 
+// Converts a packet to its reusable output format.
+func ToLogFormat(p *aprs.Packet) string {
+	defer func() {
+		if err := recover(); err != nil {
+			log.Error(err, fmt.Sprintf(" (%s)", p.Raw))
+		}
+	}()
+
+	// Panic recovery above due to https://github.com/pd0mz/go-aprs/issues/5
+	packetType := p.Payload.Type()
+
+	return fmt.Sprintf("%s -> %s [%s] (%f, %f) %s",
+		p.Src.Call,
+		p.Dst.Call,
+		packetTypeName(packetType),
+		p.Position.Latitude,
+		p.Position.Longitude,
+		p.Comment,
+	)
+}
+
 // Modified from https://github.com/pd0mz/go-aprs/blob/master/data_type.go
 var (
-	dataTypeName = map[aprs.DataType]string{
+	dataTypeNames = map[aprs.DataType]string{
 		0x1c: "Mic-E Data",
 		0x1d: "Mic-E Data",
 		'!':  "Position",
@@ -57,10 +78,10 @@ var (
 	}
 )
 
-func PacketTypeName(t aprs.DataType) string {
-	if s, ok := dataTypeName[t]; ok {
-		return s
+func packetTypeName(t aprs.DataType) string {
+	if typeName, ok := dataTypeNames[t]; ok {
+		return typeName
 	}
 
-	return fmt.Sprintf("Unknown Packet Type %#02x", byte(t))
+	return "Unknown Packet Type"
 }
