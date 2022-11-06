@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"io"
 	"os/exec"
+	"strings"
 
 	"github.com/cceremuga/ionosphere/services/config"
 	"github.com/cceremuga/ionosphere/services/log"
@@ -12,7 +13,11 @@ import (
 
 // Build builds the Command for multimon-ng based upon config and flags.
 func Build(c *config.Multimon) *exec.Cmd {
-	args := []string{"-a", "AFSK1200", "-A", "-t", "raw", "-", c.AdditionalFlags}
+	requiredArgs := []string{"-a", "AFSK1200", "-A", "-t", "raw"}
+	userArgs := strings.Fields(c.AdditionalFlags)
+	args := append(requiredArgs, userArgs...)
+	args = append(args, "-")
+
 	return exec.Command(c.Path, args...)
 }
 

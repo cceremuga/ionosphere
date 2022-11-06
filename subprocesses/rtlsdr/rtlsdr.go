@@ -3,6 +3,7 @@ package rtlsdr
 
 import (
 	"os/exec"
+	"strings"
 
 	"github.com/cceremuga/ionosphere/services/config"
 	"github.com/cceremuga/ionosphere/services/log"
@@ -10,8 +11,12 @@ import (
 
 // Build builds the Command for RTL-SDR based upon config and flags.
 func Build(c *config.Rtl) *exec.Cmd {
-	args := []string{"-f", c.Frequency, "-s", c.SampleRate, "-l",
-		c.SquelchLevel, "-g", c.Gain, "-p", c.PpmError, "-", c.AdditionalFlags}
+	requiredArgs := []string{"-f", c.Frequency, "-s", c.SampleRate, "-l",
+		c.SquelchLevel, "-g", c.Gain, "-p", c.PpmError}
+	userArgs := strings.Fields(c.AdditionalFlags)
+	args := append(requiredArgs, userArgs...)
+	args = append(args, "-")
+
 	return exec.Command(c.Path, args...)
 }
 

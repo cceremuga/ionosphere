@@ -8,6 +8,8 @@ This project is the next-generation successor to [PyPacket](https://gihub.com/cc
 
 ## Release Notes
 
+* 11/6/2022 ([1.0.2beta release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.2beta))
+    * Fixed an issue with config-supplied args for `rtl_fm` and `multimon-sg`
 * 11/4/2022 ([1.0.1 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.1))
     * Fixed an infinite loop when an unexpected APRS-IS connection drop occurs.
     * Fixed panic crashes caused when parsing packet type names.
