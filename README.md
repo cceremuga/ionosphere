@@ -35,7 +35,7 @@ To run Ionosphere, the following are required.
 * [rtl_fm](http://osmocom.org/projects/sdr/wiki/rtl-sdr)
 * [multimon-ng](https://github.com/EliasOenal/multimon-ng)
 
-If you're looking to set up Ionosphere on a Pi, there's a [helpful script here](https://github.com/g7gpr/rpiionosphereinstaller).
+If you're looking to set up Ionosphere on a Raspberry Pi from source, there's a [helpful script here](https://github.com/g7gpr/rpiionosphereinstaller)!
 
 ## Usage
 
