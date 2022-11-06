@@ -1,0 +1,84 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19.2
+      - name: Go Get Deps
+        run: go get
+      - name: Compile
+        run: make compile
+      - name: Create Release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: true
+          prerelease: true
+          release_name: ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Upload FreeBSD amd64 Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bin/ionosphere-freebsd-amd64.tar.gz
+          asset_name: ionosphere-freebsd-amd64.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload Linux amd64 Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bin/ionosphere-linux-amd64.tar.gz
+          asset_name: ionosphere-linux-amd64.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload MacOS amd64 Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bin/ionosphere-macos-amd64.tar.gz
+          asset_name: ionosphere-macos-amd64.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload MacOS arm64 Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bin/ionosphere-macos-arm64.tar.gz
+          asset_name: ionosphere-macos-arm64.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload Raspberry Pi Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bin/ionosphere-raspberry-pi.tar.gz
+          asset_name: ionosphere-raspberry-pi.tar.gz
+          asset_content_type: application/gzip
+      - name: Upload Windows amd64 Artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bin/ionosphere-windows-amd64.zip
+          asset_name: ionosphere-windows-amd64.zip
+          asset_content_type: application/zip
