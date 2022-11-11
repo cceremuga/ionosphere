@@ -26,8 +26,16 @@ func Start(m *exec.Cmd, f func(reader io.Reader)) {
 	stdout, err := m.StdoutPipe()
 
 	if err != nil {
-		log.Fatalf("Error obtaining multimon-ng ouput: %s", err.Error())
+		log.Fatalf("Error reading multimon-ng stdout: %s", err.Error())
 	}
+
+	stderr, rErr := m.StderrPipe()
+
+	if rErr != nil {
+		log.Fatalf("Error reading multimon-ng stderr: %s", err.Error())
+	}
+
+	go readStderr(stderr)
 
 	reader := bufio.NewReader(stdout)
 	go f(reader)
@@ -36,5 +44,15 @@ func Start(m *exec.Cmd, f func(reader io.Reader)) {
 		log.Fatalf("Error starting multimon-ng: %s", err.Error())
 	}
 
-	log.Println("Multimon-ng subprocess initialized.")
+	log.Println("multimon-ng initialized.")
+}
+
+func readStderr(reader io.Reader) {
+	r := bufio.NewReader(reader)
+	for true {
+		line, _, _ := r.ReadLine()
+		if line != nil {
+			log.Info(string(line))
+		}
+	}
 }
