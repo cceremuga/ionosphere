@@ -1,5 +1,5 @@
-// Package rtlsdr represents a subprocess for rtl_fm.
-package rtlsdr
+// Package rtlfm represents a subprocess for rtl_fm.
+package rtlfm
 
 import (
 	"os"

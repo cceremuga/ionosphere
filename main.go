@@ -11,7 +11,7 @@ import (
 	"github.com/cceremuga/ionosphere/services/log"
 	"github.com/cceremuga/ionosphere/services/packet"
 	"github.com/cceremuga/ionosphere/subprocesses/multimon"
-	"github.com/cceremuga/ionosphere/subprocesses/rtlsdr"
+	"github.com/cceremuga/ionosphere/subprocesses/rtlfm"
 	"github.com/cceremuga/ionosphere/tasks/beacon"
 	"github.com/fatih/color"
 )
@@ -29,7 +29,7 @@ func main() {
 	color.Cyan(logo)
 	c := config.Load()
 
-	rtl := rtlsdr.Build(&c.Rtl)
+	rtl := rtlfm.Build(&c.Rtl)
 	mult := multimon.Build(&c.Multimon)
 
 	r, w := io.Pipe()
@@ -38,7 +38,7 @@ func main() {
 
 	// Start handlers, then subprocesses.
 	handler.Start()
-	rtlsdr.Start(rtl)
+	rtlfm.Start(rtl)
 	multimon.Start(mult, packet.Decode)
 	beacon.Start(&c.Beacon)
 
