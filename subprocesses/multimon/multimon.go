@@ -49,10 +49,17 @@ func Start(m *exec.Cmd, f func(reader io.Reader)) {
 
 func readStderr(reader io.Reader) {
 	r := bufio.NewReader(reader)
+
 	for true {
-		line, _, _ := r.ReadLine()
+		line, _, err := r.ReadLine()
+
 		if line != nil {
 			log.Info(string(line))
+		}
+
+		if err != nil {
+			log.Error(err.Error())
+			break
 		}
 	}
 }
