@@ -1,4 +1,4 @@
-// Package rtlsdr represents a subprocess for RTL-SDR.
+// Package rtlsdr represents a subprocess for rtl_fm.
 package rtlsdr
 
 import (
@@ -10,18 +10,28 @@ import (
 	"github.com/cceremuga/ionosphere/services/log"
 )
 
-// Build builds the Command for RTL-SDR based upon config and flags.
+// Build the Command for rtl_fm based upon config and flags.
 func Build(c *config.Rtl) *exec.Cmd {
-	requiredArgs := []string{"-f", c.Frequency, "-s", c.SampleRate, "-l",
-		c.SquelchLevel, "-g", c.Gain, "-p", c.PpmError}
+	requiredArgs := []string{
+		"-f",
+		c.Frequency,
+		"-s",
+		c.SampleRate,
+		"-l",
+		c.SquelchLevel,
+		"-g",
+		c.Gain,
+		"-p",
+		c.PpmError,
+	}
+
 	userArgs := strings.Fields(c.AdditionalFlags)
 	args := append(requiredArgs, userArgs...)
 	args = append(args, "-")
-
 	return exec.Command(c.Path, args...)
 }
 
-// Start starts the RTL-SDR subprocess.
+// Start the rtl_fm subprocess.
 func Start(r *exec.Cmd) {
 	r.Stderr = os.Stderr
 
