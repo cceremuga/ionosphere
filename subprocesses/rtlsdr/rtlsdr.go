@@ -2,7 +2,7 @@
 package rtlsdr
 
 import (
-	"bufio"
+	"os"
 	"os/exec"
 	"strings"
 
@@ -23,35 +23,11 @@ func Build(c *config.Rtl) *exec.Cmd {
 
 // Start starts the RTL-SDR subprocess.
 func Start(r *exec.Cmd) {
-	go readStderr(r)
+	r.Stderr = os.Stderr
 
 	if err := r.Start(); err != nil {
 		log.Fatalf("Error starting rtl_fm: %s", err.Error())
 	}
 
 	log.Println("rtl_fm initialized.")
-}
-
-func readStderr(cmd *exec.Cmd) {
-	stderr, err := cmd.StderrPipe()
-
-	if err != nil {
-		log.Fatalf("Error reading rtl_fm stderr: %s", err.Error())
-	}
-
-	r := bufio.NewReader(stderr)
-
-	for true {
-		line, _, err := r.ReadLine()
-
-		if line != nil {
-			log.Info(string(line))
-		}
-
-		if err != nil {
-			log.Error(err.Error())
-			cmd.Wait() // prevent hanging subprocess
-			break
-		}
-	}
 }
