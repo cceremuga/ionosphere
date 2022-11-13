@@ -45,7 +45,7 @@ func Connect(options map[string]string) {
 	if err != nil {
 		log.Fatal(err)
 	} else {
-		log.Info(fmt.Sprintf("Connected to APRS-IS: %s", config.server))
+		log.Debug(fmt.Sprintf("Connected to APRS-IS: %s", config.server))
 	}
 
 	// Send auth
@@ -76,14 +76,14 @@ func Connect(options map[string]string) {
 	if err != nil {
 		log.Fatal(err)
 	} else {
-		log.Info("Successfully authenticated with APRS-IS.")
+		log.Debug("Successfully authenticated with APRS-IS.")
 	}
 
 	conn = c
 	connected = true
 
 	go func() {
-		log.Info("Listening for responses from APRS-IS.")
+		log.Debug("Listening for responses from APRS-IS.")
 
 		for {
 			message, err := c.ReadLine()

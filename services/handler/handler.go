@@ -23,7 +23,7 @@ func Start() []interfaces.Handler {
 		}
 
 		h.Start()
-		log.Printf("%s handler initialized.", h.Name())
+		log.Debug("%s handler initialized.", h.Name())
 		cache = append(cache, h)
 	}
 

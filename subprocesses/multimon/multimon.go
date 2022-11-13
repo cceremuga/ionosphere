@@ -4,7 +4,6 @@ package multimon
 import (
 	"bufio"
 	"io"
-	"os"
 	"os/exec"
 	"strings"
 
@@ -29,21 +28,21 @@ func Build(c *config.Multimon) *exec.Cmd {
 }
 
 // Start the multimon-ng subprocess.
-func Start(m *exec.Cmd, f func(reader io.Reader)) {
-	stdout, err := m.StdoutPipe()
+func Start(c *exec.Cmd, f func(reader io.Reader)) {
+	stdout, err := c.StdoutPipe()
 
 	if err != nil {
 		log.Fatalf("Error reading multimon-ng stdout: %s", err.Error())
 	}
 
-	m.Stderr = os.Stderr
+	c.Stderr = log.StderrLogger{}
 
 	reader := bufio.NewReader(stdout)
 	go f(reader)
 
-	if err := m.Start(); err != nil {
+	if err := c.Start(); err != nil {
 		log.Fatalf("Error starting multimon-ng: %s", err.Error())
 	}
 
-	log.Println("multimon-ng initialized.")
+	log.Debug("multimon-ng initialized.")
 }

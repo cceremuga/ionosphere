@@ -2,7 +2,6 @@
 package rtlfm
 
 import (
-	"os"
 	"os/exec"
 	"strings"
 
@@ -32,12 +31,12 @@ func Build(c *config.Rtl) *exec.Cmd {
 }
 
 // Start the rtl_fm subprocess.
-func Start(r *exec.Cmd) {
-	r.Stderr = os.Stderr
+func Start(c *exec.Cmd) {
+	c.Stderr = log.StderrLogger{}
 
-	if err := r.Start(); err != nil {
+	if err := c.Start(); err != nil {
 		log.Fatalf("Error starting rtl_fm: %s", err.Error())
 	}
 
-	log.Println("rtl_fm initialized.")
+	log.Debug("rtl_fm initialized.")
 }

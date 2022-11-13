@@ -4,7 +4,11 @@
 package main
 
 import (
+	"fmt"
 	"io"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/cceremuga/ionosphere/services/config"
 	"github.com/cceremuga/ionosphere/services/handler"
@@ -27,8 +31,11 @@ const logo = `
 
 func main() {
 	color.Cyan(logo)
+	log.Debug("Ionosphere initializing.")
+
 	c := config.Load()
 
+	// Pipe io from rtl_fm to multimon-ng
 	rtl := rtlfm.Build(&c.Rtl)
 	mult := multimon.Build(&c.Multimon)
 
@@ -42,12 +49,31 @@ func main() {
 	multimon.Start(mult, packet.Decode)
 	beacon.Start(&c.Beacon)
 
-	log.Println("Listening for packets.")
-
+	// Listen for exit signals, set up for a clean exit.
+	sigchan := make(chan os.Signal, 1)
+	signal.Notify(sigchan,
+		syscall.SIGINT,
+		syscall.SIGKILL,
+		syscall.SIGTERM,
+		syscall.SIGQUIT)
 	go func() {
-		defer w.Close()
+		s := <-sigchan
+		log.Debug(fmt.Sprintf("Signal (%s) caught, terminating processes.", s))
 
+		w.Close()
+		rtl.Process.Kill()
+		mult.Process.Kill()
+
+		log.Debug("Ionosphere exiting!")
+		os.Exit(0)
+	}()
+
+	log.Debug("Listening for packets.")
+
+	// Perform a clean exit if one of the subprocesses terms early.
+	go func() {
 		rtl.Wait()
+		w.Close()
 	}()
 
 	mult.Wait()

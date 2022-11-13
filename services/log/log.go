@@ -13,22 +13,27 @@ var fileLog *logrus.Logger
 func init() {
 	stdoutLog = logrus.New()
 	stdoutLog.SetOutput(os.Stdout)
+	stdoutLog.SetLevel(logrus.DebugLevel)
 
 	fileLog = logrus.New()
 
-	file, err := os.OpenFile("logs/ionosphere.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	file, err := os.OpenFile(
+		"logs/ionosphere.log",
+		os.O_CREATE|os.O_WRONLY|os.O_APPEND,
+		0666,
+	)
 	if err == nil {
 		fileLog.SetOutput(file)
-		fileLog.SetLevel(logrus.WarnLevel)
+		fileLog.SetLevel(logrus.DebugLevel)
 	} else {
 		stdoutLog.Fatal("Failed to initialize log file.")
 	}
 }
 
-// Println wraps logger.Println
-func Println(args ...interface{}) {
-	stdoutLog.Println(args...)
-	fileLog.Println(args...)
+// Debug wraps logger.Debug
+func Debug(args ...interface{}) {
+	stdoutLog.Debug(args...)
+	fileLog.Debug(args...)
 }
 
 // Info wraps logger.Info
@@ -65,4 +70,11 @@ func Warn(args ...interface{}) {
 func Printf(msg string, args ...interface{}) {
 	stdoutLog.Printf(msg, args...)
 	fileLog.Printf(msg, args...)
+}
+
+type StderrLogger struct{}
+
+func (StderrLogger) Write(b []byte) (int, error) {
+	Debug(string(b))
+	return len(b), nil
 }
