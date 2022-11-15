@@ -1,4 +1,4 @@
-// Package discord is a packet handler for posting to discor.
+// Package discord is a packet handler for posting to discord.
 package discord
 
 import (
@@ -47,7 +47,6 @@ func (s Discord) Enabled() bool {
 	}
 
 	return enabled
-
 }
 
 // Start connects to Discord.
