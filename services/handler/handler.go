@@ -2,6 +2,8 @@
 package handler
 
 import (
+	"fmt"
+
 	"github.com/cceremuga/ionosphere/handlers/aprsis"
 	"github.com/cceremuga/ionosphere/handlers/stdout"
 	"github.com/cceremuga/ionosphere/interfaces"
@@ -23,7 +25,7 @@ func Start() []interfaces.Handler {
 		}
 
 		h.Start()
-		log.Printf("%s handler initialized.", h.Name())
+		log.Debug(fmt.Sprintf("%s handler initialized.", h.Name()))
 		cache = append(cache, h)
 	}
 

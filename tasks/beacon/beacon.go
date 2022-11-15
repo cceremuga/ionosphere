@@ -23,7 +23,7 @@ func Start(c *config.Beacon) {
 	}
 
 	if !c.Enabled {
-		log.Println("Beacon inactive.")
+		log.Debug("Beacon inactive.")
 		return
 	}
 
@@ -31,7 +31,7 @@ func Start(c *config.Beacon) {
 }
 
 func startTicker(c *config.Beacon) {
-	log.Println(fmt.Sprintf("Beacon active, will upload every %s", c.Interval))
+	log.Debug(fmt.Sprintf("Beacon active, will upload every %s", c.Interval))
 
 	ticker := time.NewTicker(c.Interval)
 	quit := make(chan struct{})
@@ -54,7 +54,7 @@ func tickerInterval(c *config.Beacon) {
 		Comment: c.Comment,
 	}
 	cyan := color.New(color.FgCyan).SprintFunc()
-	log.Println(fmt.Sprintf("%s %s", cyan("[TO APRS-IS]"), b.String()))
+	log.Info(fmt.Sprintf("%s %s", cyan("[TO APRS-IS]"), b.String()))
 	aprsis.UploadRaw(b.String())
 }
 
