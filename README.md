@@ -8,6 +8,8 @@ This project is the next-generation successor to [PyPacket](https://gihub.com/cc
 
 ## Release Notes
 
+* 11/19/2022 ([1.0.3 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.3))
+    * Removed type logging to temporarily work around a panic/subprocess hang.
 * 11/15/2022 ([1.0.2 release](https://github.com/cceremuga/ionosphere/releases/tag/v1.0.2))
     * Fixed [an issue](https://github.com/cceremuga/ionosphere/issues/18) with config-supplied args for `rtl_fm` and `multimon-sg`.
     * Logging is now more verbose, including error output during the startup sequence for the underlying `rtl_fm`, `multimon-ng` processes.
