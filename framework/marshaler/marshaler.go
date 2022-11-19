@@ -29,19 +29,9 @@ func Unmarshal(raw string) (*aprs.Packet, error) {
 
 // Converts a packet to its reusable output format.
 func ToLogFormat(p *aprs.Packet) string {
-	defer func() {
-		if err := recover(); err != nil {
-			log.Error(err, fmt.Sprintf(" (%s)", p.Raw))
-		}
-	}()
-
-	// Panic recovery above due to https://github.com/pd0mz/go-aprs/issues/5
-	packetType := p.Payload.Type()
-
-	return fmt.Sprintf("%s -> %s [%s] (%f, %f) %s",
+	return fmt.Sprintf("%s -> %s (%f, %f) %s",
 		p.Src.Call,
 		p.Dst.Call,
-		packetTypeName(packetType),
 		p.Position.Latitude,
 		p.Position.Longitude,
 		p.Comment,
