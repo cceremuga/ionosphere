@@ -4,7 +4,7 @@
 
 Receive, decode, log, upload [APRS](http://www.aprs.org/) packets using low cost [RTL-SDR](http://osmocom.org/projects/sdr/wiki/rtl-sdr) devices.
 
-This project is the next-generation successor to [PyPacket](https://gihub.com/cceremuga/pypacket) with a number of enhancements and simplified cross-platform support. Please submit bug reports as you encounter them.
+This project is the next-generation successor to [PyPacket](https://github.com/cceremuga/pypacket) with a number of enhancements and simplified cross-platform support. Please submit bug reports as you encounter them.
 
 ## Release Notes
 
