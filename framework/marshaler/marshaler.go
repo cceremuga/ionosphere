@@ -13,7 +13,7 @@ const prefix = "APRS: "
 
 // Unmarshals a raw APRS packet string to a Packet
 func Unmarshal(raw string) (*aprs.Packet, error) {
-	raw = strings.TrimLeft(raw, prefix)
+	raw = strings.TrimPrefix(raw, prefix)
 
 	defer func() {
 		if err := recover(); err != nil {
