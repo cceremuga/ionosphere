@@ -138,7 +138,7 @@ func UploadRaw(s string) {
 		Connect(opts)
 	}
 
-	err := conn.PrintfLine(s)
+	err := conn.PrintfLine("%s", s)
 
 	if err != nil {
 		log.Error(err)
