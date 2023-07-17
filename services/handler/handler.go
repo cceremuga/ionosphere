@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/cceremuga/ionosphere/handlers/aprsis"
+	"github.com/cceremuga/ionosphere/handlers/discord"
 	"github.com/cceremuga/ionosphere/handlers/stdout"
 	"github.com/cceremuga/ionosphere/interfaces"
 	"github.com/cceremuga/ionosphere/services/config"
@@ -51,6 +52,8 @@ func instantiate(name string) interfaces.Handler {
 		return new(stdout.Stdout)
 	case "aprsis":
 		return new(aprsis.APRSIS)
+	case "discord":
+		return new(discord.Discord)
 	}
 
 	return nil

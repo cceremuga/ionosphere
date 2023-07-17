@@ -28,3 +28,7 @@ handlers:
     call-sign: ""
     passcode: ""
     filter: ""
+- id: "b1425d50-04a2-4070-bd1b-851a41377648"
+  name: "discord"
+  options:
+    enabled: true
